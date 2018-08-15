@@ -5,14 +5,14 @@ namespace TimeStation.Migrations
     using System.Data.Entity.Migrations;
     using System.Linq;
 
-    internal sealed class Configuration : DbMigrationsConfiguration<TimeStation.Models.ApplicationDbContext>
+    internal sealed class Configuration : DbMigrationsConfiguration<TimeStation.TimeStationContext>
     {
         public Configuration()
         {
             AutomaticMigrationsEnabled = false;
         }
 
-        protected override void Seed(TimeStation.Models.ApplicationDbContext context)
+        protected override void Seed(TimeStation.TimeStationContext context)
         {
             //  This method will be called after migrating to the latest version.
 

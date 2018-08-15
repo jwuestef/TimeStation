@@ -5,10 +5,10 @@ using System.Web;
 
 namespace TimeStation.Models
 {
-    public class Role
+    public class Campus
     {
-        public int RoleId { get; set; }
-        public string RoleName { get; set; }
+        public int CampusId { get; set; }
+        public string CampusName { get; set; }
 
 
     }

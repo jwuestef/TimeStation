@@ -59,6 +59,8 @@
     <Reference Include="System" />
     <Reference Include="System.Data" />
     <Reference Include="System.Drawing" />
+    <Reference Include="System.Runtime.Serialization" />
+    <Reference Include="System.Security" />
     <Reference Include="System.Web.DynamicData" />
     <Reference Include="System.Web.Entity" />
     <Reference Include="System.Web.ApplicationServices" />
@@ -210,17 +212,22 @@
     <Compile Include="Global.asax.cs">
       <DependentUpon>Global.asax</DependentUpon>
     </Compile>
-    <Compile Include="Migrations\201808142039416_InitialModelWithAdditionalUserProperties.cs" />
-    <Compile Include="Migrations\201808142039416_InitialModelWithAdditionalUserProperties.Designer.cs">
-      <DependentUpon>201808142039416_InitialModelWithAdditionalUserProperties.cs</DependentUpon>
+    <Compile Include="Migrations\201808151648138_InitialModel.cs" />
+    <Compile Include="Migrations\201808151648138_InitialModel.Designer.cs">
+      <DependentUpon>201808151648138_InitialModel.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\Attendance.cs" />
+    <Compile Include="Models\Campus.cs" />
+    <Compile Include="Models\Cohort.cs" />
+    <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
     <Compile Include="Models\Role.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Startup.cs" />
+    <Compile Include="TimeStationContext.cs" />
   </ItemGroup>
   <ItemGroup>
     <Content Include="Content\bootstrap-theme.css" />
@@ -299,8 +306,8 @@
     <Content Include="Scripts\jquery-3.3.1.min.map" />
   </ItemGroup>
   <ItemGroup>
-    <EmbeddedResource Include="Migrations\201808142039416_InitialModelWithAdditionalUserProperties.resx">
-      <DependentUpon>201808142039416_InitialModelWithAdditionalUserProperties.cs</DependentUpon>
+    <EmbeddedResource Include="Migrations\201808151648138_InitialModel.resx">
+      <DependentUpon>201808151648138_InitialModel.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
