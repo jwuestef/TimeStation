@@ -239,6 +239,18 @@
     <Compile Include="Migrations\201808172012349_AddPropertiesToApplicationUser.Designer.cs">
       <DependentUpon>201808172012349_AddPropertiesToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808172039325_AddDepartmentNavigationPropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201808172039325_AddDepartmentNavigationPropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201808172039325_AddDepartmentNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808172041076_AddCohortNavigationPropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201808172041076_AddCohortNavigationPropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201808172041076_AddCohortNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808172042082_AddCampusNavigationPropertyToApplicationUser.cs" />
+    <Compile Include="Migrations\201808172042082_AddCampusNavigationPropertyToApplicationUser.Designer.cs">
+      <DependentUpon>201808172042082_AddCampusNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -358,6 +370,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808172012349_AddPropertiesToApplicationUser.resx">
       <DependentUpon>201808172012349_AddPropertiesToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808172039325_AddDepartmentNavigationPropertyToApplicationUser.resx">
+      <DependentUpon>201808172039325_AddDepartmentNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808172041076_AddCohortNavigationPropertyToApplicationUser.resx">
+      <DependentUpon>201808172041076_AddCohortNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808172042082_AddCampusNavigationPropertyToApplicationUser.resx">
+      <DependentUpon>201808172042082_AddCampusNavigationPropertyToApplicationUser.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

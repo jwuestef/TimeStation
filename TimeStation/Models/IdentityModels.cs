@@ -16,9 +16,9 @@ namespace TimeStation.Models
         public string LastName { get; set; }
         public string Barcode { get; set; }
 
-        //public Department Department { get; set; }
-        //public Cohort Cohort { get; set; }
-        //public Campus Campus { get; set; }
+        public Department Department { get; set; }
+        public Cohort Cohort { get; set; }
+        public Campus Campus { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -32,7 +32,7 @@ namespace TimeStation.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
 
-        //public DbSet<ApplicationUser> AspNetUsers { get; set; }
+        //public DbSet<ApplicationUser> AspNetUsers { get; set; }   // ALREADY QUERYABLE
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Cohort> Cohorts { get; set; }
