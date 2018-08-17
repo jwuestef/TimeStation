@@ -207,6 +207,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CampusesController.cs" />
     <Compile Include="Controllers\CohortsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
@@ -225,6 +226,14 @@
     <Compile Include="Migrations\201808171822466_CreateCohortsTable.cs" />
     <Compile Include="Migrations\201808171822466_CreateCohortsTable.Designer.cs">
       <DependentUpon>201808171822466_CreateCohortsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171947410_CreateCampusesTable.cs" />
+    <Compile Include="Migrations\201808171947410_CreateCampusesTable.Designer.cs">
+      <DependentUpon>201808171947410_CreateCampusesTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171949379_RenameCampusTableToCampuses.cs" />
+    <Compile Include="Migrations\201808171949379_RenameCampusTableToCampuses.Designer.cs">
+      <DependentUpon>201808171949379_RenameCampusTableToCampuses.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -305,6 +314,11 @@
     <Content Include="Views\Cohorts\Details.cshtml" />
     <Content Include="Views\Cohorts\Edit.cshtml" />
     <Content Include="Views\Cohorts\Index.cshtml" />
+    <Content Include="Views\Campuses\Create.cshtml" />
+    <Content Include="Views\Campuses\Delete.cshtml" />
+    <Content Include="Views\Campuses\Details.cshtml" />
+    <Content Include="Views\Campuses\Edit.cshtml" />
+    <Content Include="Views\Campuses\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -331,6 +345,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808171822466_CreateCohortsTable.resx">
       <DependentUpon>201808171822466_CreateCohortsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171947410_CreateCampusesTable.resx">
+      <DependentUpon>201808171947410_CreateCampusesTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171949379_RenameCampusTableToCampuses.resx">
+      <DependentUpon>201808171949379_RenameCampusTableToCampuses.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

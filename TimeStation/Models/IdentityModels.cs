@@ -36,6 +36,7 @@ namespace TimeStation.Models
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Cohort> Cohorts { get; set; }
+        public DbSet<Campus> Campuses { get; set; }
 
 
 
@@ -69,6 +70,14 @@ namespace TimeStation.Models
                 .Property(cohort => cohort.CohortName)
                 .HasMaxLength(255)
                 .IsRequired();
+
+            modelBuilder.Entity<Campus>()
+                .Property(campus => campus.CampusName)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            modelBuilder.Entity<Campus>()
+                .ToTable("Campuses");
 
 
             base.OnModelCreating(modelBuilder);
