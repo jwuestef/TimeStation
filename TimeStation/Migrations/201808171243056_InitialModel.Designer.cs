@@ -13,7 +13,7 @@ namespace TimeStation.Migrations
         
         string IMigrationMetadata.Id
         {
-            get { return "201808151648138_InitialModel"; }
+            get { return "201808171243056_InitialModel"; }
         }
         
         string IMigrationMetadata.Source

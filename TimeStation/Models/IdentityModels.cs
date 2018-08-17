@@ -10,17 +10,16 @@ namespace TimeStation.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        [Required]
-        public string UserId { get; set; }
+        //[Required]
+        //public string UserId { get; set; }
 
-        public string FirstName { get; set; }
-        public string LastName { get; set; }
-        public string EmailAddress { get; set; }
-        public string Barcode { get; set; }
-        public Department Department { get; set; }
-        public Role Role { get; set; }
-        public Cohort Cohort { get; set; }
-        public Campus Campus { get; set; }
+        //public string FirstName { get; set; }
+        //public string LastName { get; set; }
+        //public string EmailAddress { get; set; }
+        //public string Barcode { get; set; }
+        //public Department Department { get; set; }
+        //public Cohort Cohort { get; set; }
+        //public Campus Campus { get; set; }
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -34,7 +33,7 @@ namespace TimeStation.Models
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
         public ApplicationDbContext()
-            : base("TimeStationContext", throwIfV1Schema: false)
+            : base("TimeStationConnection", throwIfV1Schema: false)
         {
         }
 
@@ -42,5 +41,19 @@ namespace TimeStation.Models
         {
             return new ApplicationDbContext();
         }
+
+
+
+
+        protected override void OnModelCreating(DbModelBuilder modelBuilder)
+        {
+
+
+
+
+
+            base.OnModelCreating(modelBuilder);
+        }
+
     }
 }
