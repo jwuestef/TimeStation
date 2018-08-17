@@ -7,7 +7,7 @@ namespace TimeStation.Models
 {
     public class Cohort
     {
-        public int CohortId { get; set; }
+        public string CohortId { get; set; }
         public string CohortName { get; set; }
 
 

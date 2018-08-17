@@ -35,6 +35,7 @@ namespace TimeStation.Models
         //public DbSet<ApplicationUser> AspNetUsers { get; set; }
 
         public DbSet<Department> Departments { get; set; }
+        public DbSet<Cohort> Cohorts { get; set; }
 
 
 
@@ -59,6 +60,15 @@ namespace TimeStation.Models
                 .HasMaxLength(255)
                 .IsRequired();
 
+            modelBuilder.Entity<Cohort>()
+                .Property(cohort => cohort.CohortId)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            modelBuilder.Entity<Cohort>()
+                .Property(cohort => cohort.CohortName)
+                .HasMaxLength(255)
+                .IsRequired();
 
 
             base.OnModelCreating(modelBuilder);

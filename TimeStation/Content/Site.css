@@ -33,3 +33,7 @@ input.input-validation-error,
 input.input-validation-error:focus {
     border: 2px solid red;
 }
+
+input.form-control {
+    background-color: #cccccc;
+}
