@@ -207,6 +207,7 @@
     <Compile Include="App_Start\RouteConfig.cs" />
     <Compile Include="App_Start\Startup.Auth.cs" />
     <Compile Include="Controllers\AccountController.cs" />
+    <Compile Include="Controllers\CohortsController.cs" />
     <Compile Include="Controllers\DepartmentsController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Controllers\ManageController.cs" />
@@ -220,6 +221,10 @@
     <Compile Include="Migrations\201808171657490_CreateDepartmentsTable.cs" />
     <Compile Include="Migrations\201808171657490_CreateDepartmentsTable.Designer.cs">
       <DependentUpon>201808171657490_CreateDepartmentsTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808171822466_CreateCohortsTable.cs" />
+    <Compile Include="Migrations\201808171822466_CreateCohortsTable.Designer.cs">
+      <DependentUpon>201808171822466_CreateCohortsTable.cs</DependentUpon>
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
@@ -295,6 +300,11 @@
     <Content Include="Views\Departments\Details.cshtml" />
     <Content Include="Views\Departments\Edit.cshtml" />
     <Content Include="Views\Departments\Index.cshtml" />
+    <Content Include="Views\Cohorts\Create.cshtml" />
+    <Content Include="Views\Cohorts\Delete.cshtml" />
+    <Content Include="Views\Cohorts\Details.cshtml" />
+    <Content Include="Views\Cohorts\Edit.cshtml" />
+    <Content Include="Views\Cohorts\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
@@ -318,6 +328,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808171657490_CreateDepartmentsTable.resx">
       <DependentUpon>201808171657490_CreateDepartmentsTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808171822466_CreateCohortsTable.resx">
+      <DependentUpon>201808171822466_CreateCohortsTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -1,0 +1,27 @@
+﻿@model TimeStation.Models.Cohort
+
+@{
+    ViewBag.Title = "Details";
+    Layout = "~/Views/Shared/_Layout.cshtml";
+}
+
+<h2>Details</h2>
+
+<div>
+    <h4>Cohort</h4>
+    <hr />
+    <dl class="dl-horizontal">
+        <dt>
+            @Html.DisplayNameFor(model => model.CohortName)
+        </dt>
+
+        <dd>
+            @Html.DisplayFor(model => model.CohortName)
+        </dd>
+
+    </dl>
+</div>
+<p>
+    @Html.ActionLink("Edit", "Edit", new { id = Model.CohortId }) |
+    @Html.ActionLink("Back to List", "Index")
+</p>
