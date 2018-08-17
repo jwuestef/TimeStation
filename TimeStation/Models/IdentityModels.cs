@@ -10,11 +10,11 @@ namespace TimeStation.Models
     // You can add profile data for the user by adding more properties to your ApplicationUser class, please visit https://go.microsoft.com/fwlink/?LinkID=317594 to learn more.
     public class ApplicationUser : IdentityUser
     {
-        //public string UserId { get; set; }
-        //public string FirstName { get; set; }
-        //public string LastName { get; set; }
-        //public string EmailAddress { get; set; }
-        //public string Barcode { get; set; }
+        //public string Username { get; set; }  // ALREADY DEFINED BY DOTNET
+
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Barcode { get; set; }
 
         //public Department Department { get; set; }
         //public Cohort Cohort { get; set; }
@@ -61,6 +61,8 @@ namespace TimeStation.Models
                 .HasMaxLength(255)
                 .IsRequired();
 
+
+
             modelBuilder.Entity<Cohort>()
                 .Property(cohort => cohort.CohortId)
                 .HasMaxLength(255)
@@ -71,6 +73,8 @@ namespace TimeStation.Models
                 .HasMaxLength(255)
                 .IsRequired();
 
+
+
             modelBuilder.Entity<Campus>()
                 .Property(campus => campus.CampusName)
                 .HasMaxLength(255)
@@ -78,6 +82,25 @@ namespace TimeStation.Models
 
             modelBuilder.Entity<Campus>()
                 .ToTable("Campuses");
+
+
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.FirstName)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.LastName)
+                .HasMaxLength(255)
+                .IsRequired();
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.Barcode)
+                .HasMaxLength(255);
+
+
+
 
 
             base.OnModelCreating(modelBuilder);
