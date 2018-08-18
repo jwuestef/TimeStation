@@ -18,13 +18,13 @@
         @Html.ValidationSummary(true, "", new { @class = "text-danger" })
         <div class="form-group">
             @Html.LabelFor(model => model.CohortId)
-            @Html.TextBoxFor(model => model.CohortId, new { @class = "form-control", placeholder = "ex: Learning" })
+            @Html.TextBoxFor(model => model.CohortId, new { @class = "form-control", placeholder = "ex: 2018_08_JSSS_IN001" })
             @Html.ValidationMessageFor(model => model.CohortId)
         </div>
 
         <div class="form-group">
             @Html.LabelFor(model => model.CohortName)
-            @Html.TextBoxFor(model => model.CohortName, new { @class = "form-control", placeholder = "ex: Learning" })
+            @Html.TextBoxFor(model => model.CohortName, new { @class = "form-control", placeholder = "ex: JavaScript August 2018" })
             @Html.ValidationMessageFor(model => model.CohortName)
         </div>
 

@@ -252,11 +252,16 @@
     <Compile Include="Migrations\201808172042082_AddCampusNavigationPropertyToApplicationUser.Designer.cs">
       <DependentUpon>201808172042082_AddCampusNavigationPropertyToApplicationUser.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.cs" />
+    <Compile Include="Migrations\201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.Designer.cs">
+      <DependentUpon>201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Campus.cs" />
     <Compile Include="Models\Cohort.cs" />
+    <Compile Include="Models\CreateUserViewModel.cs" />
     <Compile Include="Models\Department.cs" />
     <Compile Include="Models\IdentityModels.cs" />
     <Compile Include="Models\ManageViewModels.cs" />
@@ -385,6 +390,9 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808172042082_AddCampusNavigationPropertyToApplicationUser.resx">
       <DependentUpon>201808172042082_AddCampusNavigationPropertyToApplicationUser.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.resx">
+      <DependentUpon>201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

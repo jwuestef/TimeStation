@@ -12,13 +12,36 @@ namespace TimeStation.Models
     {
         //public string Username { get; set; }  // ALREADY DEFINED BY DOTNET
 
+
+
+        [Required(ErrorMessage = "Username is required.")]
+        [StringLength(255, ErrorMessage = "Username must be less than 255 characters.")]
+        [Display(Name = "Username")]
+        public override string UserName { get; set; }
+
+        [Required(ErrorMessage = "First Name is required.")]
+        [StringLength(255, ErrorMessage = "First Name must be less than 255 characters.")]
+        [Display(Name = "First Name")]
         public string FirstName { get; set; }
+
+        [Required(ErrorMessage = "Last Name is required.")]
+        [StringLength(255, ErrorMessage = "Last Name must be less than 255 characters.")]
+        [Display(Name = "Last Name")]
         public string LastName { get; set; }
-        public string Barcode { get; set; }
+
+        [Required(ErrorMessage = "Email address is required.")]
+        [EmailAddress(ErrorMessage = "That's not a valid email address")]
+        public override string Email { get; set; }
+
+        public Campus Campus { get; set; }
 
         public Department Department { get; set; }
+
         public Cohort Cohort { get; set; }
-        public Campus Campus { get; set; }
+
+        public string Barcode { get; set; }
+
+
 
         public async Task<ClaimsIdentity> GenerateUserIdentityAsync(UserManager<ApplicationUser> manager)
         {
@@ -28,6 +51,15 @@ namespace TimeStation.Models
             return userIdentity;
         }
     }
+
+
+
+
+
+
+
+
+
 
     public class ApplicationDbContext : IdentityDbContext<ApplicationUser>
     {
@@ -39,9 +71,9 @@ namespace TimeStation.Models
                                                                                                                // 'db.Users.'etc...
 
 
+        public DbSet<Campus> Campuses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Cohort> Cohorts { get; set; }
-        public DbSet<Campus> Campuses { get; set; }
 
 
 
@@ -89,6 +121,11 @@ namespace TimeStation.Models
                 .ToTable("Campuses");
 
 
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.UserName)
+                .HasMaxLength(255)
+                .IsRequired();
 
             modelBuilder.Entity<ApplicationUser>()
                 .Property(user => user.FirstName)

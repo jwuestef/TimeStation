@@ -30,10 +30,13 @@ span.field-validation-error {
 }
 
 input.input-validation-error,
-input.input-validation-error:focus {
+input.input-validation-error:focus,
+select.input-validation-error,
+select.input-validation-error:focus {
     border: 2px solid red;
 }
 
-input.form-control {
+input.form-control,
+select.form-control {
     background-color: #cccccc;
 }

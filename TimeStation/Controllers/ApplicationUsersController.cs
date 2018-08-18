@@ -1,4 +1,6 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity;
+using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -19,8 +21,54 @@ namespace TimeStation.Controllers
         // GET: ApplicationUsers
         public ActionResult Index()
         {
-            //var users = db.Users.ToList();
-            return View(db.Users.ToList());
+            // BEGIN - When we visit this User Management page, make sure the appropriate roles exist in the database
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+            if (!roleManager.RoleExists("Guest"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Guest";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Kiosk"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Kiosk";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Student"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Student";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Staff"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Staff";
+                roleManager.Create(role);
+            }
+
+            if (!roleManager.RoleExists("Admin"))
+            {
+                var role = new IdentityRole();
+                role.Name = "Admin";
+                roleManager.Create(role);
+            }
+            // END - When we visit this User Management page, make sure the appropriate roles exist in the database
+
+            var users = db.Users
+                .Include(user => user.Department)
+                .Include(user => user.Cohort)
+                .Include(user => user.Campus)
+                .ToList();
+
+            return View(users);
+
         }
 
 
@@ -45,7 +93,15 @@ namespace TimeStation.Controllers
         // GET: ApplicationUsers/Create
         public ActionResult Create()
         {
-            return View();
+
+            var viewModel = new CreateUserViewModel
+            {
+                Campuses = db.Campuses.ToList(),
+                Departments = db.Departments.ToList(),
+                Cohorts = db.Cohorts.ToList()
+            };
+
+            return View(viewModel);
         }
 
 
