@@ -33,6 +33,11 @@ namespace TimeStation.Models
     {
 
         //public DbSet<ApplicationUser> AspNetUsers { get; set; }   // ALREADY QUERYABLE
+        //public System.Data.Entity.DbSet<TimeStation.Models.ApplicationUser> ApplicationUsers { get; set; }   // THIS WAS AUTO ADDED WHEN I CREATED THE ApplicationUsersController AND
+                                                                                                               // HAD IT AUTO-GENERATE VIEWS... HAD TO COMMENT THIS OUT
+                                                                                                               // AND RENAME ALL 'db.ApplicationUsers.'etc... IN MY VIEWS TO BE
+                                                                                                               // 'db.Users.'etc...
+
 
         public DbSet<Department> Departments { get; set; }
         public DbSet<Cohort> Cohorts { get; set; }
