@@ -27,15 +27,18 @@ namespace TimeStation.Models
         [EmailAddress(ErrorMessage = "That's not a valid email address")]
         public string Email { get; set; }
 
-        [Required(ErrorMessage = "Campus is required.")]
-        public int Campus { get; set; }
+        [Display(Name = "Campus")]
+        public int CampusId { get; set; }
         public IEnumerable<Campus> Campuses { get; set; }
 
-        //[Required(ErrorMessage = "Department is required.")]
-        public int Department { get; set; }
+        [Display(Name = "Department")]
+        public int DepartmentId { get; set; }
         public IEnumerable<Department> Departments { get; set; }
 
-        public string Cohort { get; set; }
+        // Strings are nullable, so this is OPTIONAL BY DEFAULT. Add [Required] if you want it mandatory. 
+        // Integers aren't nullable, so CampusId and DepartmentId are REQUIRED BY DEFAULT. Add ? to be int? to make it optional
+        [Display(Name = "Cohort")]
+        public string CohortId { get; set; }
         public IEnumerable<Cohort> Cohorts { get; set; }
 
         public string Barcode { get; set; }

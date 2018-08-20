@@ -43,21 +43,21 @@
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Campus)
-            @Html.DropDownListFor(model => model.Campus, new SelectList(Model.Campuses, "CampusId", "CampusName"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Campus)
+            @Html.LabelFor(model => model.CampusId)
+            @Html.DropDownListFor(model => model.CampusId, new SelectList(Model.Campuses, "CampusId", "CampusName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CampusId)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Department)
-            @Html.DropDownListFor(model => model.Department, new SelectList(Model.Departments, "DepartmentId", "DepartmentName"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Department)
+            @Html.LabelFor(model => model.DepartmentId)
+            @Html.DropDownListFor(model => model.DepartmentId, new SelectList(Model.Departments, "DepartmentId", "DepartmentName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.DepartmentId)
         </div>
 
         <div class="form-group">
-            @Html.LabelFor(model => model.Cohort)
-            @Html.DropDownListFor(model => model.Cohort, new SelectList(Model.Cohorts, "CohortId", "CohortName"), "", new { @class = "form-control" })
-            @Html.ValidationMessageFor(model => model.Cohort)
+            @Html.LabelFor(model => model.CohortId)
+            @Html.DropDownListFor(model => model.CohortId, new SelectList(Model.Cohorts, "CohortId", "CohortName"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.CohortId)
         </div>
 
         <div class="form-group">

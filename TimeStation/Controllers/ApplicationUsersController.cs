@@ -6,6 +6,7 @@ using System.Data;
 using System.Data.Entity;
 using System.Linq;
 using System.Net;
+using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
 using TimeStation.Models;
@@ -15,7 +16,7 @@ namespace TimeStation.Controllers
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-
+        public UserManager<ApplicationUser> UserManager { get; private set; }
 
 
         // GET: ApplicationUsers
@@ -62,9 +63,9 @@ namespace TimeStation.Controllers
             // END - When we visit this User Management page, make sure the appropriate roles exist in the database
 
             var users = db.Users
-                .Include(user => user.Department)
-                .Include(user => user.Cohort)
-                .Include(user => user.Campus)
+                .Include(user => user.DepartmentId)
+                .Include(user => user.CohortId)
+                .Include(user => user.CampusId)
                 .ToList();
 
             return View(users);
@@ -111,16 +112,70 @@ namespace TimeStation.Controllers
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "Id,FirstName,LastName,Barcode,Email,EmailConfirmed,PasswordHash,SecurityStamp,PhoneNumber,PhoneNumberConfirmed,TwoFactorEnabled,LockoutEndDateUtc,LockoutEnabled,AccessFailedCount,UserName")] ApplicationUser applicationUser)
+        public async Task<ActionResult> Create(CreateUserViewModel createUserViewModel)
         {
+
+
             if (ModelState.IsValid)
             {
-                db.Users.Add(applicationUser);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                //var SelectedCampus = db.Campuses.Single(camp => camp.CampusId == createUserViewModel.CampusId);
+                //var SelectedDepartment = db.Departments.Single(dept => dept.DepartmentId == createUserViewModel.DepartmentId);
+                //var SelectedCohort = db.Cohorts.SingleOrDefault(cohort => cohort.CohortId == createUserViewModel.CohortId);
+
+                var user = new ApplicationUser()
+                {
+                    UserName = createUserViewModel.UserName,
+                    FirstName = createUserViewModel.FirstName,
+                    LastName = createUserViewModel.LastName,
+                    Email = createUserViewModel.Email,
+                    CampusId = createUserViewModel.CampusId,
+                    DepartmentId = createUserViewModel.DepartmentId,
+                    CohortId = createUserViewModel.CohortId,
+                    Barcode = createUserViewModel.Barcode
+
+                };
+                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+
+                var result = await UserManager.CreateAsync(user, "Testing123!");
+                if (result.Succeeded)
+                {
+                    return RedirectToAction("Index", "ApplicationUsers");
+                }
+                else
+                {
+                    foreach (var error in result.Errors)
+                    {
+                        ModelState.AddModelError("", error);
+                    }
+                }
             }
 
-            return View(applicationUser);
+
+
+            // If we got this far, something failed, redisplay form
+            ModelState.AddModelError("", "ERROR - unable to save user to DB for unknown reason. Redisplay the form with the same values...");
+
+            var viewModel = new CreateUserViewModel
+            {
+                UserName = createUserViewModel.UserName,
+                FirstName = createUserViewModel.FirstName,
+                LastName = createUserViewModel.LastName,
+                Email = createUserViewModel.Email,
+                CampusId = createUserViewModel.CampusId,
+                Campuses = db.Campuses.ToList(),
+                DepartmentId = createUserViewModel.DepartmentId,
+                Departments = db.Departments.ToList(),
+                CohortId = createUserViewModel.CohortId,
+                Cohorts = db.Cohorts.ToList(),
+                Barcode = createUserViewModel.Barcode
+            };
+
+            return View(viewModel);
+
+
+
+
+
         }
 
 

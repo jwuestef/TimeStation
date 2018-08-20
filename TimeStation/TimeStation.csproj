@@ -256,6 +256,22 @@
     <Compile Include="Migrations\201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.Designer.cs">
       <DependentUpon>201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808191900357_RenameAspNetUsersForeignKeyColumns.cs" />
+    <Compile Include="Migrations\201808191900357_RenameAspNetUsersForeignKeyColumns.Designer.cs">
+      <DependentUpon>201808191900357_RenameAspNetUsersForeignKeyColumns.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201626178_MakeCohortIdColumnRequiredForApplicantionUsersTable.cs" />
+    <Compile Include="Migrations\201808201626178_MakeCohortIdColumnRequiredForApplicantionUsersTable.Designer.cs">
+      <DependentUpon>201808201626178_MakeCohortIdColumnRequiredForApplicantionUsersTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201857546_RemoveApplicationUsersNavigationProperties.cs" />
+    <Compile Include="Migrations\201808201857546_RemoveApplicationUsersNavigationProperties.Designer.cs">
+      <DependentUpon>201808201857546_RemoveApplicationUsersNavigationProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.cs" />
+    <Compile Include="Migrations\201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.Designer.cs">
+      <DependentUpon>201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -393,6 +409,18 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.resx">
       <DependentUpon>201808181903153_MakeEmailPropertyRequiredInAspNetUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808191900357_RenameAspNetUsersForeignKeyColumns.resx">
+      <DependentUpon>201808191900357_RenameAspNetUsersForeignKeyColumns.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201626178_MakeCohortIdColumnRequiredForApplicantionUsersTable.resx">
+      <DependentUpon>201808201626178_MakeCohortIdColumnRequiredForApplicantionUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201857546_RemoveApplicationUsersNavigationProperties.resx">
+      <DependentUpon>201808201857546_RemoveApplicationUsersNavigationProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.resx">
+      <DependentUpon>201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

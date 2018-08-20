@@ -33,11 +33,11 @@ namespace TimeStation.Models
         [EmailAddress(ErrorMessage = "That's not a valid email address")]
         public override string Email { get; set; }
 
-        public Campus Campus { get; set; }
+        public int CampusId { get; set; }
 
-        public Department Department { get; set; }
+        public int DepartmentId { get; set; }
 
-        public Cohort Cohort { get; set; }
+        public string CohortId { get; set; }
 
         public string Barcode { get; set; }
 
@@ -138,8 +138,17 @@ namespace TimeStation.Models
                 .IsRequired();
 
             modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.CampusId)
+                .IsRequired();
+
+            modelBuilder.Entity<ApplicationUser>()
+                .Property(user => user.DepartmentId)
+                .IsRequired();
+
+            modelBuilder.Entity<ApplicationUser>()
                 .Property(user => user.Barcode)
-                .HasMaxLength(255);
+                .HasMaxLength(255)
+                .IsRequired();
 
 
 
