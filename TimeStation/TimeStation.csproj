@@ -280,6 +280,18 @@
     <Compile Include="Migrations\201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.Designer.cs">
       <DependentUpon>201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808202051065_CreateAttendanceTable.cs" />
+    <Compile Include="Migrations\201808202051065_CreateAttendanceTable.Designer.cs">
+      <DependentUpon>201808202051065_CreateAttendanceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808202053298_AddForeignKeyConstraintsToAttendanceTable.cs" />
+    <Compile Include="Migrations\201808202053298_AddForeignKeyConstraintsToAttendanceTable.Designer.cs">
+      <DependentUpon>201808202053298_AddForeignKeyConstraintsToAttendanceTable.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808202057547_AddApplicationUserForeignKeyToAttendanceTable.cs" />
+    <Compile Include="Migrations\201808202057547_AddApplicationUserForeignKeyToAttendanceTable.Designer.cs">
+      <DependentUpon>201808202057547_AddApplicationUserForeignKeyToAttendanceTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -436,6 +448,15 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.resx">
       <DependentUpon>201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808202051065_CreateAttendanceTable.resx">
+      <DependentUpon>201808202051065_CreateAttendanceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808202053298_AddForeignKeyConstraintsToAttendanceTable.resx">
+      <DependentUpon>201808202053298_AddForeignKeyConstraintsToAttendanceTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808202057547_AddApplicationUserForeignKeyToAttendanceTable.resx">
+      <DependentUpon>201808202057547_AddApplicationUserForeignKeyToAttendanceTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>
