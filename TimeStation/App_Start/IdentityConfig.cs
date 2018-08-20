@@ -38,6 +38,13 @@ namespace TimeStation
         public ApplicationUserManager(IUserStore<ApplicationUser> store)
             : base(store)
         {
+            // Begin - THIS IS WHAT ALLOWS HYPHENS IN STUDENT IDS
+            UserValidator = new UserValidator<ApplicationUser>(this)
+            {
+                AllowOnlyAlphanumericUserNames = false,
+                RequireUniqueEmail = true
+            };
+            // End - THIS IS WHAT ALLOWS HYPHENS IN STUDENT IDS
         }
 
         public static ApplicationUserManager Create(IdentityFactoryOptions<ApplicationUserManager> options, IOwinContext context) 

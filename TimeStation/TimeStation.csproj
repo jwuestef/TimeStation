@@ -272,6 +272,14 @@
     <Compile Include="Migrations\201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.Designer.cs">
       <DependentUpon>201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.cs</DependentUpon>
     </Compile>
+    <Compile Include="Migrations\201808201918190_MakingCampusDepartmentCohortIntoNavigationProperties.cs" />
+    <Compile Include="Migrations\201808201918190_MakingCampusDepartmentCohortIntoNavigationProperties.Designer.cs">
+      <DependentUpon>201808201918190_MakingCampusDepartmentCohortIntoNavigationProperties.cs</DependentUpon>
+    </Compile>
+    <Compile Include="Migrations\201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.cs" />
+    <Compile Include="Migrations\201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.Designer.cs">
+      <DependentUpon>201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.cs</DependentUpon>
+    </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
     <Compile Include="Models\Attendance.cs" />
@@ -421,6 +429,12 @@
     </EmbeddedResource>
     <EmbeddedResource Include="Migrations\201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.resx">
       <DependentUpon>201808201905095_MakeCohortIdColumnNotRequiredForApplicationUsersTable.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201918190_MakingCampusDepartmentCohortIntoNavigationProperties.resx">
+      <DependentUpon>201808201918190_MakingCampusDepartmentCohortIntoNavigationProperties.cs</DependentUpon>
+    </EmbeddedResource>
+    <EmbeddedResource Include="Migrations\201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.resx">
+      <DependentUpon>201808201921425_MakeBarcodeColumnOptionalForApplicationUsersTable.cs</DependentUpon>
     </EmbeddedResource>
   </ItemGroup>
   <PropertyGroup>

@@ -30,9 +30,9 @@
         <td>@Html.DisplayFor(modelItem => item.FirstName)</td>
         <td>@Html.DisplayFor(modelItem => item.LastName)</td>
         <td>@Html.DisplayFor(modelItem => item.Email)</td>
-        <td>@Html.DisplayFor(modelItem => item.Campus)</td>
-        <td>@Html.DisplayFor(modelItem => item.Department)</td>
-        <td>@Html.DisplayFor(modelItem => item.Cohort)</td>
+        <td>@Html.DisplayFor(modelItem => item.Campus.CampusName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Department.DepartmentName)</td>
+        <td>@Html.DisplayFor(modelItem => item.Cohort.CohortName)</td>
         <td>
             @Html.ActionLink("Edit", "Edit", new { id=item.Id }) |
             @Html.ActionLink("Details", "Details", new { id=item.Id }) |

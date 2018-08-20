@@ -34,10 +34,13 @@ namespace TimeStation.Models
         public override string Email { get; set; }
 
         public int CampusId { get; set; }
+        public Campus Campus { get; set; }
 
         public int DepartmentId { get; set; }
+        public Department Department { get; set; }
 
         public string CohortId { get; set; }
+        public Cohort Cohort { get; set; }
 
         public string Barcode { get; set; }
 
@@ -141,14 +144,16 @@ namespace TimeStation.Models
                 .Property(user => user.CampusId)
                 .IsRequired();
 
+            //modelBuilder.Entity<ApplicationUser>()
+            //    .HasRequired(au => au.Campus)
+
             modelBuilder.Entity<ApplicationUser>()
                 .Property(user => user.DepartmentId)
                 .IsRequired();
 
             modelBuilder.Entity<ApplicationUser>()
                 .Property(user => user.Barcode)
-                .HasMaxLength(255)
-                .IsRequired();
+                .HasMaxLength(255);
 
 
 

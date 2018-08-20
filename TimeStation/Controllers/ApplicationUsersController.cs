@@ -16,7 +16,7 @@ namespace TimeStation.Controllers
     public class ApplicationUsersController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
-        public UserManager<ApplicationUser> UserManager { get; private set; }
+        public ApplicationUserManager UserManager { get; private set; }
 
 
         // GET: ApplicationUsers
@@ -24,7 +24,7 @@ namespace TimeStation.Controllers
         {
             // BEGIN - When we visit this User Management page, make sure the appropriate roles exist in the database
             var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
-            var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+            var UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
             if (!roleManager.RoleExists("Guest"))
             {
@@ -63,9 +63,9 @@ namespace TimeStation.Controllers
             // END - When we visit this User Management page, make sure the appropriate roles exist in the database
 
             var users = db.Users
-                .Include(user => user.DepartmentId)
-                .Include(user => user.CohortId)
-                .Include(user => user.CampusId)
+                .Include(user => user.Department)
+                .Include(user => user.Cohort)
+                .Include(user => user.Campus)
                 .ToList();
 
             return View(users);
@@ -134,7 +134,7 @@ namespace TimeStation.Controllers
                     Barcode = createUserViewModel.Barcode
 
                 };
-                var UserManager = new UserManager<ApplicationUser>(new UserStore<ApplicationUser>(db));
+                var UserManager = new ApplicationUserManager(new UserStore<ApplicationUser>(db));
 
                 var result = await UserManager.CreateAsync(user, "Testing123!");
                 if (result.Succeeded)
