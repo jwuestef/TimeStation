@@ -14,17 +14,22 @@ namespace TimeStation.Controllers
     {
         private ApplicationDbContext db = new ApplicationDbContext();
 
+
+
         // GET: Attendances
         public ActionResult Index()
         {
-            var users = db.Users
-                .Include(user => user.Department)
-                .Include(user => user.Cohort)
-                .Include(user => user.Campus)
+            var users = db.Attendances
+                .Include(att => att.ApplicationUser)
+                .Include(att => att.Campus)
+                .Include(att => att.Department)
+                .Include(att => att.Cohort)
                 .ToList();
 
             return View(users);
         }
+
+
 
         // GET: Attendances/Details/5
         public ActionResult Details(int? id)
@@ -41,36 +46,55 @@ namespace TimeStation.Controllers
             return View(attendance);
         }
 
+
+
         // GET: Attendances/Create
         public ActionResult Create()
         {
             var viewModel = new CreateAttendanceViewModel
             {
-                ApplicationUsers = db.Users.ToList(),
-                Campuses = db.Campuses.ToList(),
-                Departments = db.Departments.ToList(),
-                Cohorts = db.Cohorts.ToList()
+                ApplicationUsers = db.Users.ToList()
             };
 
             return View(viewModel);
         }
+
+
 
         // POST: Attendances/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "AttendanceId,ApplicationUserId,TimeIn,TimeOut,Duration,CampusId,DepartmentId,CohortId")] Attendance attendance)
+        public ActionResult Create(CreateAttendanceViewModel attendanceViewModel)
         {
             if (ModelState.IsValid)
             {
-                db.Attendances.Add(attendance);
+                TimeSpan? duration = null;
+                if (attendanceViewModel.TimeOut.HasValue)
+                    duration = attendanceViewModel.TimeOut - attendanceViewModel.TimeIn;
+
+                var user = db.Users.Single(u => u.Id == attendanceViewModel.ApplicationUserId);
+
+                var newAttendance = new Attendance
+                {
+                    ApplicationUserId = attendanceViewModel.ApplicationUserId,
+                    TimeIn = attendanceViewModel.TimeIn,
+                    TimeOut = attendanceViewModel.TimeOut,
+                    Duration = duration,
+                    CampusId = user.CampusId,
+                    DepartmentId = user.DepartmentId,
+                    CohortId = user.CohortId
+                };
+                db.Attendances.Add(newAttendance);
                 db.SaveChanges();
                 return RedirectToAction("Index");
             }
 
-            return View(attendance);
+            return View(attendanceViewModel);
         }
+
+
 
         // GET: Attendances/Edit/5
         public ActionResult Edit(int? id)
@@ -86,6 +110,8 @@ namespace TimeStation.Controllers
             }
             return View(attendance);
         }
+
+
 
         // POST: Attendances/Edit/5
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
@@ -103,6 +129,8 @@ namespace TimeStation.Controllers
             return View(attendance);
         }
 
+
+
         // GET: Attendances/Delete/5
         public ActionResult Delete(int? id)
         {
@@ -118,6 +146,8 @@ namespace TimeStation.Controllers
             return View(attendance);
         }
 
+
+
         // POST: Attendances/Delete/5
         [HttpPost, ActionName("Delete")]
         [ValidateAntiForgeryToken]
@@ -129,6 +159,8 @@ namespace TimeStation.Controllers
             return RedirectToAction("Index");
         }
 
+
+
         protected override void Dispose(bool disposing)
         {
             if (disposing)
@@ -137,5 +169,8 @@ namespace TimeStation.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
 }

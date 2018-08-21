@@ -63,9 +63,9 @@ namespace TimeStation.Controllers
             // END - When we visit this User Management page, make sure the appropriate roles exist in the database
 
             var users = db.Users
+                .Include(user => user.Campus)
                 .Include(user => user.Department)
                 .Include(user => user.Cohort)
-                .Include(user => user.Campus)
                 .ToList();
 
             return View(users);

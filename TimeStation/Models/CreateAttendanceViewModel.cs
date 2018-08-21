@@ -16,25 +16,13 @@ namespace TimeStation.Models
         public string ApplicationUserId { get; set; }
         public IEnumerable<ApplicationUser> ApplicationUsers { get; set; }
 
-        [Display(Name = "Time In")]
+        [Required(ErrorMessage = "DateTime In is required.")]
+        [Display(Name = "DateTime In")]
         public DateTime TimeIn { get; set; }
 
-        [Display(Name = "Time Out")]
+        [Display(Name = "DateTime Out")]
         public DateTime? TimeOut { get; set; }
 
-        public TimeSpan? Duration { get; set; }
-
-        [Display(Name = "Campus")]
-        public int CampusId { get; set; }
-        public IEnumerable<Campus> Campuses { get; set; }
-
-        [Display(Name = "Department")]
-        public int DepartmentId { get; set; }
-        public IEnumerable<Department> Departments { get; set; }
-
-        [Display(Name = "Cohort")]
-        public string CohortId { get; set; }
-        public IEnumerable<Cohort> Cohorts { get; set; }
 
 
     }
