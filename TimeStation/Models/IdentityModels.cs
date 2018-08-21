@@ -78,7 +78,7 @@ namespace TimeStation.Models
         public DbSet<Campus> Campuses { get; set; }
         public DbSet<Department> Departments { get; set; }
         public DbSet<Cohort> Cohorts { get; set; }
-        public DbSet<Attendance> Attandances { get; set; }
+        public DbSet<Attendance> Attendances { get; set; }
 
 
 
