@@ -59,11 +59,24 @@ namespace TimeStation.Controllers
                 if (openAttendance == null)
                 {
                     // We did not find an open attendance item for this user, create a new one.
+                    var newAttendance = new Attendance
+                    {
+                        ApplicationUserId = userId,
+                        TimeIn = DateTime.Now,
+                        CampusId = user.CampusId,
+                        DepartmentId = user.DepartmentId,
+                        CohortId = user.CohortId
+                    };
+                    db.Attendances.Add(newAttendance);
+                    db.SaveChanges();
                     return RedirectToAction("ViewKiosk");
                 }
                 else
                 {
                     // We DID find an open attendance item for this user. Mark the current time as the timeout and calcuate the duration.
+                    openAttendance.TimeOut = DateTime.Now;
+                    openAttendance.Duration = openAttendance.TimeOut - openAttendance.TimeIn;
+                    db.SaveChanges();
                     return RedirectToAction("ViewKiosk");
                 }
 
