@@ -20,7 +20,7 @@ namespace TimeStation.Controllers
         // Define a static logger variable so that it references the
         // Logger instance named "MyApp".
         private static readonly ILog log = LogManager.GetLogger(typeof(AttendancesController));
-        log4net.ILog logger = log4net.LogManager.GetLogger(typeof(AttendancesController));  //Declaring Log4Net
+        //log4net.ILog logger = log4net.LogManager.GetLogger(typeof(AttendancesController));  //Declaring Log4Net
 
         public AttendancesController()
         {
@@ -40,7 +40,7 @@ namespace TimeStation.Controllers
             }
             catch (Exception ex)
             {
-                logger.Error(ex.ToString());
+                log.Error(ex.ToString());
             }
 
             log.Info("Entering application.");
