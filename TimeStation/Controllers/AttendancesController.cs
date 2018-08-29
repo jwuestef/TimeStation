@@ -8,17 +8,44 @@ using System.Web;
 using System.Web.Mvc;
 using TimeStation.Models;
 
+// Import log4net classes.
+using log4net;
+using log4net.Config;
+
 namespace TimeStation.Controllers
 {
     public class AttendancesController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        // Define a static logger variable so that it references the
+        // Logger instance named "MyApp".
+        private static readonly ILog log = LogManager.GetLogger(typeof(AttendancesController));
+        log4net.ILog logger = log4net.LogManager.GetLogger(typeof(AttendancesController));  //Declaring Log4Net
 
+        public AttendancesController()
+        {
+            // Set up a simple configuration that logs on the console.
+            BasicConfigurator.Configure();
+        }
 
 
         // GET: Attendances
         public ActionResult Index()
         {
+            try
+            {
+                int x, y, z;
+                x = 5; y = 0;
+                z = x / y;
+            }
+            catch (Exception ex)
+            {
+                logger.Error(ex.ToString());
+            }
+
+            log.Info("Entering application.");
+            log.Warn("Entering application.");
+
             var users = db.Attendances
                 .Include(att => att.ApplicationUser)
                 .Include(att => att.Campus)
