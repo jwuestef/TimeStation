@@ -40,11 +40,12 @@ namespace TimeStation.Controllers
             }
             catch (Exception ex)
             {
-                log.Error(ex.ToString());
+                string usernameToLog = System.Web.HttpContext.Current.User.Identity.Name;
+                log.Error(usernameToLog, ex);
             }
 
             log.Info("Entering application.");
-            log.Warn("Entering application.");
+            //log.Warn("Entering application.");
 
             var users = db.Attendances
                 .Include(att => att.ApplicationUser)
