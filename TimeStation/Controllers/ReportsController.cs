@@ -1,4 +1,5 @@
-﻿using System;
+﻿using log4net;
+using System;
 using System.Collections.Generic;
 using System.Data;
 using System.Data.Entity;
@@ -13,107 +14,51 @@ namespace TimeStation.Controllers
     public class ReportsController : Controller
     {
         private ApplicationDbContext db = new ApplicationDbContext();
+        private static readonly ILog log = LogManager.GetLogger(typeof(AttendancesController));
+
+
 
         // GET: Reports
         public ActionResult Index()
         {
-            return View(db.Departments.ToList());
-        }
-
-        // GET: Reports/Details/5
-        public ActionResult Details(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Department department = db.Departments.Find(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            return View(department);
-        }
-
-        // GET: Reports/Create
-        public ActionResult Create()
-        {
             return View();
         }
 
-        // POST: Reports/Create
+
+
+        // POST: Attendances/Create
         // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
         // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
         [HttpPost]
         [ValidateAntiForgeryToken]
-        public ActionResult Create([Bind(Include = "DepartmentId,DepartmentName")] Department department)
+        public ActionResult Create(string query)
         {
-            if (ModelState.IsValid)
+            if (String.IsNullOrWhiteSpace(query))
             {
-                db.Departments.Add(department);
-                db.SaveChanges();
-                return RedirectToAction("Index");
+                return View("Index");
             }
 
-            return View(department);
+            log.Info(query);
+
+            //Attendance attendance = db.Attendances.SqlQuery(query).SingleOrDefault();
+
+            //if (attendance == null)
+            //{
+            //    return HttpNotFound();
+            //}
+
+            var returnedValues = db.Database.ExecuteSqlCommand("SELECT * FROM dbo.\"Attendances\"").ToString();
+            //var returnedValues = db.Database.ExecuteSqlCommand("SELECT * FROM abcde");
+            var returnedValues2 = db.Attendances.SqlQuery("SELECT * FROM dbo.\"Attendances\"").ToList();
+
+            var returnedValues3 = db.Database.SqlQuery<object>("SELECT * from dbo.\"Attendances\"").ToList();
+
+
+
+            return View("Index");
         }
 
-        // GET: Reports/Edit/5
-        public ActionResult Edit(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Department department = db.Departments.Find(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            return View(department);
-        }
 
-        // POST: Reports/Edit/5
-        // To protect from overposting attacks, please enable the specific properties you want to bind to, for 
-        // more details see https://go.microsoft.com/fwlink/?LinkId=317598.
-        [HttpPost]
-        [ValidateAntiForgeryToken]
-        public ActionResult Edit([Bind(Include = "DepartmentId,DepartmentName")] Department department)
-        {
-            if (ModelState.IsValid)
-            {
-                db.Entry(department).State = EntityState.Modified;
-                db.SaveChanges();
-                return RedirectToAction("Index");
-            }
-            return View(department);
-        }
-
-        // GET: Reports/Delete/5
-        public ActionResult Delete(int? id)
-        {
-            if (id == null)
-            {
-                return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
-            }
-            Department department = db.Departments.Find(id);
-            if (department == null)
-            {
-                return HttpNotFound();
-            }
-            return View(department);
-        }
-
-        // POST: Reports/Delete/5
-        [HttpPost, ActionName("Delete")]
-        [ValidateAntiForgeryToken]
-        public ActionResult DeleteConfirmed(int id)
-        {
-            Department department = db.Departments.Find(id);
-            db.Departments.Remove(department);
-            db.SaveChanges();
-            return RedirectToAction("Index");
-        }
 
         protected override void Dispose(bool disposing)
         {
@@ -123,5 +68,8 @@ namespace TimeStation.Controllers
             }
             base.Dispose(disposing);
         }
+
+
+
     }
 }

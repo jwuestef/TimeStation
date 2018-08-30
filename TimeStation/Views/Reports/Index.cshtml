@@ -1,34 +1,39 @@
-﻿@model IEnumerable<TimeStation.Models.Department>
-
+﻿
 @{
-    ViewBag.Title = "Index";
+    ViewBag.Title = "Reports";
     Layout = "~/Views/Shared/_Layout.cshtml";
 }
 
-<h2>Index</h2>
+<h2>Run A Report</h2>
 
-<p>
-    @Html.ActionLink("Create New", "Create")
-</p>
-<table class="table">
-    <tr>
-        <th>
-            @Html.DisplayNameFor(model => model.DepartmentName)
-        </th>
-        <th></th>
-    </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.DepartmentName)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Details", "Details", new { id=item.DepartmentId }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.DepartmentId })
-        </td>
-    </tr>
+
+
+
+
+
+@using (Html.BeginForm("Create", "Reports"))
+{
+    @Html.AntiForgeryToken()
+
+    <hr />
+
+    <div class="form-horizontal" style="margin-left: 5%; margin-bottom: 5%;">
+        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+
+        <div class="form-group">
+            @Html.Label("Query string:")
+            @Html.TextBox("query")
+        </div>
+
+        <div class="form-group">
+            <input type="submit" value="Create" class="btn btn-default" />
+        </div>
+    </div>
 }
 
-</table>
+
+
+
+
+
