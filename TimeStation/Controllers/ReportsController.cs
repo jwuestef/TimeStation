@@ -2,7 +2,9 @@
 using System;
 using System.Collections.Generic;
 using System.Data;
+using System.Data.Common;
 using System.Data.Entity;
+using System.Dynamic;
 using System.Linq;
 using System.Net;
 using System.Web;
@@ -38,7 +40,7 @@ namespace TimeStation.Controllers
                 return View("Index");
             }
 
-            log.Info(query);
+            //log.Info(query);
 
             //Attendance attendance = db.Attendances.SqlQuery(query).SingleOrDefault();
 
@@ -47,16 +49,28 @@ namespace TimeStation.Controllers
             //    return HttpNotFound();
             //}
 
+            //var returnedValues2 = db.Attendances.SqlQuery("SELECT * FROM dbo.\"Attendances\"").ToList();
+            //var returnedValues3 = db.Database.SqlQuery<object>("SELECT * from dbo.\"Attendances\"").ToList();
+
+
+
             var returnedValues = db.Database.ExecuteSqlCommand("SELECT * FROM dbo.\"Attendances\"").ToString();
-            //var returnedValues = db.Database.ExecuteSqlCommand("SELECT * FROM abcde");
-            var returnedValues2 = db.Attendances.SqlQuery("SELECT * FROM dbo.\"Attendances\"").ToList();
 
-            var returnedValues3 = db.Database.SqlQuery<object>("SELECT * from dbo.\"Attendances\"").ToList();
+            //System.Data.Entity.Infrastructure.DbRawSqlQuery<object> data2 = db.Database.SqlQuery<object>("SELECT * FROM dbo.\"Attendances\"");
+            List<Attendance> data3 = db.Database.SqlQuery<Attendance>("SELECT * FROM dbo.\"Attendances\"").ToList();
 
+
+            foreach (var eachItem in data3)
+            {
+                log.Info(eachItem.ToString());
+            }
 
 
             return View("Index");
         }
+
+
+
 
 
 
