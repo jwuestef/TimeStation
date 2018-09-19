@@ -1,4 +1,5 @@
-﻿using System;
+﻿using Microsoft.AspNet.Identity.EntityFramework;
+using System;
 using System.Collections.Generic;
 using System.ComponentModel.DataAnnotations;
 using System.Linq;
@@ -24,7 +25,7 @@ namespace TimeStation.Models
         public string LastName { get; set; }
 
         [Required(ErrorMessage = "Email address is required.")]
-        [EmailAddress(ErrorMessage = "That's not a valid email address")]
+        [EmailAddress(ErrorMessage = "That's not a valid email address.")]
         public string Email { get; set; }
 
         [Display(Name = "Campus")]
@@ -42,6 +43,14 @@ namespace TimeStation.Models
         public IEnumerable<Cohort> Cohorts { get; set; }
 
         public string Barcode { get; set; }
+
+        [Required(ErrorMessage = "The user must have a role assigned.")]
+        public string RoleId { get; set; }
+
+        [Display(Name = "Role")]
+        //[Required(ErrorMessage = "The user must have a role assigned.")]
+        public List<IdentityRole> Roles { get; set; }
+
 
 
 

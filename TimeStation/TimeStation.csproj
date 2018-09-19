@@ -303,6 +303,7 @@
     </Compile>
     <Compile Include="Migrations\Configuration.cs" />
     <Compile Include="Models\AccountViewModels.cs" />
+    <Compile Include="Models\ApplicationUserIndexViewModel.cs" />
     <Compile Include="Models\Attendance.cs" />
     <Compile Include="Models\Campus.cs" />
     <Compile Include="Models\Cohort.cs" />

@@ -66,6 +66,12 @@
             @Html.ValidationMessageFor(model => model.Barcode)
         </div>
 
+        <div class="form-group">
+            @Html.LabelFor(model => model.Roles)
+            @Html.DropDownListFor(model => model.RoleId, new SelectList(Model.Roles, "Name", "Name"), "", new { @class = "form-control" })
+            @Html.ValidationMessageFor(model => model.RoleId)
+        </div>
+
 
 
         <div class="form-group">

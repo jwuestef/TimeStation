@@ -9,6 +9,7 @@ using System.Net;
 using System.Threading.Tasks;
 using System.Web;
 using System.Web.Mvc;
+using System.Web.Security;
 using TimeStation.Models;
 
 namespace TimeStation.Controllers
@@ -62,15 +63,46 @@ namespace TimeStation.Controllers
             }
             // END - When we visit this User Management page, make sure the appropriate roles exist in the database
 
-            var users = db.Users
-                .Include(user => user.Campus)
-                .Include(user => user.Department)
-                .Include(user => user.Cohort)
-                .ToList();
+            //var users = db.Users
+            //    .Include(user => user.Campus)
+            //    .Include(user => user.Department)
+            //    .Include(user => user.Cohort)
+            //    .Join(db.)
+            //    .ToList();
 
-            return View(users);
+            //return View(users);
+
+            var usersWithRoles = (from user in db.Users
+                                  select new
+                                  {
+                                      UserId = user.Id,
+                                      Username = user.UserName,
+                                      Email = user.Email,
+                                      RoleNames = (from userRole in user.Roles
+                                                   join role in db.Roles on userRole.RoleId
+                                                   equals role.Id
+                                                   select role.Name).ToList()
+                                  }).ToList().Select(p => new ApplicationUserIndexViewModel()
+
+                                  {
+                                      Barcode = user.Barcode,
+                                      UserName = p.Username,
+                                      Email = p.Email,
+                                      Role = string.Join(",", p.RoleNames)
+                                  });
+
+
+            return View(usersWithRoles);
 
         }
+        public string Barcode { get; set; }
+        public string UserName { get; set; }
+        public string FirstName { get; set; }
+        public string LastName { get; set; }
+        public string Email { get; set; }
+        public string Campus { get; set; }
+        public string Department { get; set; }
+        public string Cohort { get; set; }
 
 
 
@@ -95,11 +127,15 @@ namespace TimeStation.Controllers
         public ActionResult Create()
         {
 
+            var roleManager = new RoleManager<IdentityRole>(new RoleStore<IdentityRole>(db));
+            var roles = roleManager.Roles.ToList();
+
             var viewModel = new CreateUserViewModel
             {
                 Campuses = db.Campuses.ToList(),
                 Departments = db.Departments.ToList(),
-                Cohorts = db.Cohorts.ToList()
+                Cohorts = db.Cohorts.ToList(),
+                Roles = roles
             };
 
             return View(viewModel);
@@ -139,6 +175,7 @@ namespace TimeStation.Controllers
                 var result = await UserManager.CreateAsync(user, "Testing123!");
                 if (result.Succeeded)
                 {
+                    UserManager.AddToRole(user.Id, createUserViewModel.RoleId);
                     return RedirectToAction("Index", "ApplicationUsers");
                 }
                 else
